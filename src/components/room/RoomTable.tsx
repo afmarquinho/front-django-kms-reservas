@@ -2,7 +2,7 @@
  * RoomTable
  * props:
  *  - rooms: array de salas
- *  - onEdit(room)
+ *  - onUpdateStatus(room)
  *  - onToggleState(room)
  *  - onDelete(room)
  */
@@ -15,21 +15,20 @@ import { SquaresExcludeIcon } from "lucide-react";
 
 export type RoomTableProp = {
   rooms: TRoom[];
-  onEdit: (room: TRoom) => void;
   onToggleState?: (room: TRoom) => void;
   onDelete?: (room: TRoom) => void;
 };
 
 const RoomTable: React.FC<RoomTableProp> = ({
   rooms,
-  onEdit,
   onToggleState,
   onDelete,
 }) => {
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
+  const [editRoom, setEditRoom] = useState<TRoom | null>(null);
 
   const handleEdit = (r: TRoom) => {
-    onEdit(r);
+    setEditRoom(r);
     setIsFormOpen(true);
   };
 
@@ -146,7 +145,13 @@ const RoomTable: React.FC<RoomTableProp> = ({
         </table>
       </div>
 
-      {isFormOpen && <RoomForm setIsFormOpen={setIsFormOpen} />}
+      {isFormOpen && (
+        <RoomForm
+          setIsFormOpen={setIsFormOpen}
+          setEditRoom={setEditRoom}
+          editRoom={editRoom}
+        />
+      )}
     </>
   );
 };
