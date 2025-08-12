@@ -1,11 +1,12 @@
+// axiosClient.js
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "http://localhost:8000/api", // URL base de tu backend
-  timeout: 5000, // opcional, en ms
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8000/api",
+  timeout: 5000,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-export default axiosClient
+export default axiosClient;

@@ -15,18 +15,18 @@ const HomePage = () => {
       </Link>
       <Link
         to="/rooms"
-        className="bg-teal-500 text-slate-50 w-46 h-20 flex items-center gap-2 font-semibold text-xl  cursor-pointer select-none group"
+        className="bg-indigo-400 text-slate-50 w-46 h-20 flex items-center gap-2 font-semibold text-xl  cursor-pointer select-none group"
       >
-        <div className="bg-teal-600 h-full w-20 flex justify-center items-center group-hover:bg-teal-800 duration-300">
+        <div className="bg-indigo-600 h-full w-20 flex justify-center items-center group-hover:bg-indigo-800 duration-300">
           <SquaresExcludeIcon className="text-slate-50 h-12 w-12" />
         </div>
         <span>Sala</span>
       </Link>
       <Link
         to="/reserves"
-        className="bg-teal-500 text-slate-50 w-46 h-20 flex items-center gap-2 font-semibold text-xl  cursor-pointer select-none group"
+        className="bg-amber-400 text-slate-50 w-46 h-20 flex items-center gap-2 font-semibold text-xl  cursor-pointer select-none group"
       >
-        <div className="bg-teal-600 h-full w-20 flex justify-center items-center group-hover:bg-teal-800 duration-300">
+        <div className="bg-amber-600 h-full w-20 flex justify-center items-center group-hover:bg-amber-800 duration-300">
           <HandPlatterIcon className="text-slate-50 h-12 w-12" />
         </div>
         <span>Reservas</span>
