@@ -1,7 +1,7 @@
-import type { FormEvent } from "react";
+import { useEffect, type FormEvent } from "react";
 import { useFormRoom } from "../../hooks/useFormRoom";
 import { useRoom } from "../../hooks/useRoom";
-import type { TRoomForm } from "../../types";
+import type { TRoom, TRoomForm } from "../../types";
 
 const initialRoom: TRoomForm = {
   nombre: "",
@@ -12,24 +12,49 @@ const initialRoom: TRoomForm = {
 
 type RoomFormProps = {
   setIsFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setEditRoom: React.Dispatch<React.SetStateAction<TRoom | null>>;
+  editRoom: TRoom | null;
 };
 
-export const RoomForm = ({ setIsFormOpen }: RoomFormProps) => {
+export const RoomForm = ({
+  setIsFormOpen,
+  editRoom,
+  setEditRoom,
+}: RoomFormProps) => {
   const { formValues, error, onInputChange, onSubmit, resetForm } =
     useFormRoom(initialRoom);
-  const { createNewRoom } = useRoom();
+  const { createNewRoom, onEditRoom } = useRoom();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     onSubmit(event);
-    createNewRoom(formValues);
-    resetForm();
+    if (!editRoom) {
+      createNewRoom(formValues);
+    } else {
+      setEditRoom({ ...editRoom, ...formValues });
+      onEditRoom(editRoom.id, formValues);
+    }
+    resetForm(initialRoom);
     setIsFormOpen(false);
   };
 
   const handleCancel = () => {
-    resetForm();
+    resetForm(initialRoom);
     setIsFormOpen(false);
+    setEditRoom(null);
   };
+
+  useEffect(() => {
+    if (editRoom) {
+      resetForm({
+        nombre: editRoom.nombre,
+        capacidad: editRoom.capacidad,
+        direccion: editRoom.direccion,
+        tarifa_por_hora: editRoom.tarifa_por_hora,
+      });
+    } else {
+      resetForm(initialRoom);
+    }
+  }, [editRoom]);
 
   return (
     <div
@@ -40,7 +65,7 @@ export const RoomForm = ({ setIsFormOpen }: RoomFormProps) => {
         className="bg-white p-6 rounded-xl shadow-md mx-auto space-y-4 w-11/12 max-w-[450px]"
       >
         <h2 className="text-2xl font-bold text-center select-none">
-          Crear Sala
+          {!editRoom ? "Crear Sala" : `Editar sala: ${editRoom.nombre}`}
         </h2>
 
         {error && (

@@ -42,9 +42,9 @@ export const useFormRoom = (initialValue: TRoomForm) => {
     setError("");
   };
 
-  const resetForm = () => {
-    setFormValues(initialValue);
+  const resetForm = (values: TRoomForm) => {
+    setFormValues(values);
   };
 
-  return { formValues, error, onInputChange, onSubmit, resetForm };
+  return { formValues, error, onInputChange, onSubmit, resetForm, setFormValues };
 };

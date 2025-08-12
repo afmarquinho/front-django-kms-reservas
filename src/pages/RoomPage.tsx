@@ -8,27 +8,27 @@ import { useNavigate } from "react-router-dom";
    por ejemplo: updateRoomAvailability, deleteRoom, etc. */
 
 const RoomPage = () => {
-  const { rooms, loading, error, deleteOneRoom } = useRoom();
+  const { rooms, loading, error, deleteOneRoom, toggleStatusRoom } = useRoom();
 
   const navigate = useNavigate();
 
-  const handleEdit = (room: TRoom) => {
-    // navega a la pantalla de edición o abre un modal
-    console.log("editar", room);
-    // ejemplo: navigate(`/rooms/${room.id}/edit`)
-  };
+  
 
   const handleToggleState = async (room: TRoom) => {
-    console.log("editar", room);
+    const confirm = window.confirm(
+      `¿Vas a cambiar la disponibilidad de la sala "${room.nombre}"?.`
+    );
+    if (!confirm) return;
+
+    toggleStatusRoom(room.id, !room.disponible);
   };
 
   const handleDelete = async (room: TRoom) => {
     const confirm = window.confirm(
       `¿Eliminar la sala "${room.nombre}"? Esta acción no se puede deshacer.`
     );
-    if (!confirm) return
-      deleteOneRoom(room.id);
-    
+    if (!confirm) return;
+    deleteOneRoom(room.id);
   };
 
   if (loading) return <p className="p-4">Cargando salas...</p>;
@@ -48,7 +48,6 @@ const RoomPage = () => {
 
         <RoomTable
           rooms={rooms}
-          onEdit={handleEdit}
           onToggleState={handleToggleState}
           onDelete={handleDelete}
         />
