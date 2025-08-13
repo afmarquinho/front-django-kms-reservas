@@ -44,7 +44,6 @@ export const useRoom = () => {
   const createNewRoom = async (room: TRoomForm) => {
     try {
       const { data } = await createRoom(room);
-      console.log(data);
       setRooms((prevRooms) => {
         const updatedRooms = [...prevRooms, data];
         localStorage.setItem("rooms", JSON.stringify(updatedRooms));

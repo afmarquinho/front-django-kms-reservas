@@ -79,7 +79,7 @@ export const RoomForm = ({
             name="nombre"
             value={formValues.nombre}
             onChange={onInputChange}
-            className="mt-1 py-1.5 px-2 outline-none block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-teal-500"
           />
         </div>
 
@@ -90,7 +90,7 @@ export const RoomForm = ({
             name="capacidad"
             value={formValues.capacidad}
             onChange={onInputChange}
-            className="mt-1 py-1.5 px-2 outline-none block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-teal-500"
           />
         </div>
 
@@ -101,7 +101,7 @@ export const RoomForm = ({
             name="direccion"
             value={formValues.direccion}
             onChange={onInputChange}
-            className="mt-1 py-1.5 px-2 outline-none block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-teal-500"
           />
         </div>
 
@@ -112,7 +112,7 @@ export const RoomForm = ({
             name="tarifa_por_hora"
             value={formValues.tarifa_por_hora}
             onChange={onInputChange}
-            className="mt-1 py-1.5 px-2 outline-none block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-teal-500"
           />
         </div>
 

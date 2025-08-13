@@ -13,13 +13,13 @@ import type { TRoom } from "../../types";
 import { RoomForm } from "./RoomForm";
 import { SquaresExcludeIcon } from "lucide-react";
 
-export type RoomTableProp = {
+type RoomTableProps = {
   rooms: TRoom[];
   onToggleState?: (room: TRoom) => void;
   onDelete?: (room: TRoom) => void;
 };
 
-const RoomTable: React.FC<RoomTableProp> = ({
+const RoomTable: React.FC<RoomTableProps> = ({
   rooms,
   onToggleState,
   onDelete,
@@ -46,7 +46,9 @@ const RoomTable: React.FC<RoomTableProp> = ({
         <table className="min-w-full divide-y divide-gray-200 select-none">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600"></th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
+                #
+              </th>
               <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">
                 Nombre
               </th>
